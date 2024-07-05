@@ -18,7 +18,6 @@ import java.util.List;
 public class ProductEntity {
 
     private ObjectId id;
-    private String productId;
     private String name;
     private String description;
     private String category;

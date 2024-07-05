@@ -11,8 +11,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemRequest {
+public class SelectItemRequest {
 
-    private String customerId;
-    private List<ItemProductRequest> products;
+    private String itemId;
+
+    private List<ItemRequest> items;
 }

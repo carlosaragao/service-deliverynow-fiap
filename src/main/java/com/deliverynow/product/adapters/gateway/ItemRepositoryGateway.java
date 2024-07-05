@@ -1,36 +1,41 @@
 package com.deliverynow.product.adapters.gateway;
 
+import com.deliverynow.product.application.mapper.ItemMapper;
+import com.deliverynow.product.domain.entity.Item;
 import com.deliverynow.product.domain.gateway.ItemGateway;
 import com.deliverynow.product.infrastructure.repository.ItemRepository;
-import com.deliverynow.product.infrastructure.repository.ProductRepository;
-import com.deliverynow.product.infrastructure.repository.entity.ItemEntity;
-import com.deliverynow.product.infrastructure.repository.entity.ProductEntity;
+import jakarta.enterprise.context.ApplicationScoped;
+import org.bson.types.ObjectId;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@ApplicationScoped
 public class ItemRepositoryGateway implements ItemGateway {
 
     ItemRepository itemRepository;
-    ProductRepository productRepository;
+    ItemMapper itemMapper;
 
-    public ItemRepositoryGateway(ItemRepository itemRepository, ProductRepository productRepository) {
+    public ItemRepositoryGateway(ItemRepository itemRepository, ItemMapper itemMapper) {
         this.itemRepository = itemRepository;
-        this.productRepository = productRepository;
+        this.itemMapper = itemMapper;
     }
 
     @Override
-    public void selectItem(List<String> productIds, String itemId) {
+    public void selectItem(Item item) {
 
-        var productEntityList = productIds.stream()
-                .map(id -> productRepository.getProductByProductId(id))
-                .collect(Collectors.toList());
+        itemRepository.persist(itemMapper.domainToEntity(item));
+    }
 
-        var itemEntity = ItemEntity.builder()
-                .itemId(itemId)
-                .listProducts(productEntityList)
-                .build();
+    @Override
+    public void deletedItem(String itemId) {
+        itemRepository.deleteById(new ObjectId(itemId));
+    }
 
-        itemRepository.persist(itemEntity);
+    @Override
+    public List<Item> getItemsByCustomer(String customerId) {
+        var itemEntityList = itemRepository.getItemByCustomer(customerId);
+        return itemEntityList.stream()
+                .map(itemEntity -> itemMapper.entityToDomain(itemEntity))
+                .toList();
     }
 }
