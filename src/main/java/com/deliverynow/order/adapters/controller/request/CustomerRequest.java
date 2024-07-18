@@ -11,7 +11,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientRequest {
+public class CustomerRequest {
 
     @Schema(description = "Nome da pessoa", example = "João da Silva")
     @NotBlank(message = "O nome não pode estar em branco")

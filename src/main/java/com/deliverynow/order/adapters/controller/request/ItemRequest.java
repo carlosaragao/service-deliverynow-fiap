@@ -32,4 +32,7 @@ public class ItemRequest {
     @Schema(description = "Preço unitário do produto", example = "12.50")
     @NotNull(message = "O preço unitário não pode ser nulo")
     private Double unitPrice;
+
+    private String category;
+    private Double totalPrice;
 }

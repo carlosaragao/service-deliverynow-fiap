@@ -13,34 +13,34 @@ public class OrderMapper {
     public OrderEntity orderToOrderEntity(Order order) {
 
         var listItems = new ArrayList<ItemEntity>();
-        order.getItems().forEach(product -> {
-            var items = ItemEntity.builder()
-                    .produtoId(product.getProductId())
-                    .nome(product.getName())
-                    .descricao(product.getDescription())
-                    .quantidade(product.getQuantity())
-                    .precoUnitario(product.getUnitPrice())
-                    .totalItem(product.getTotalItem())
-                    .build();
-            listItems.add(items);
-        });
+//        order.getItemOrders().forEach(product -> {
+//            var items = ItemEntity.builder()
+//                    .produtoId(product.getProductId())
+//                    .nome(product.getName())
+//                    .descricao(product.getDescription())
+//                    .quantidade(product.getQuantity())
+//                    .precoUnitario(product.getUnitPrice())
+//                    .totalItem(product.getTotalItem())
+//                    .build();
+//            listItems.add(items);
+//        });
 
         return OrderEntity.builder()
-                .client(ClientEntity.builder()
-                        .name(order.getClient().getName())
-                        .phone(order.getClient().getPhone())
-                        .email(order.getClient().getEmail())
-                        .document(order.getClient().getDocument())
+                .customer(ClientEntity.builder()
+                        .name(order.getCustomer().getName())
+                        .phone(order.getCustomer().getPhone())
+                        .email(order.getCustomer().getEmail())
+                        .document(order.getCustomer().getDocument())
                         .address(AddressEntity.builder()
-                                .postalCode(order.getClient().getAddress().getPostalCode())
-                                .street(order.getClient().getAddress().getStreet())
-                                .state(order.getClient().getAddress().getState())
-                                .city(order.getClient().getAddress().getCity())
-                                .number(order.getClient().getAddress().getNumber())
+                                .postalCode(order.getCustomer().getAddress().getPostalCode())
+                                .street(order.getCustomer().getAddress().getStreet())
+                                .state(order.getCustomer().getAddress().getState())
+                                .city(order.getCustomer().getAddress().getCity())
+                                .number(order.getCustomer().getAddress().getNumber())
                                 .build())
                         .build())
                 .items(listItems)
-                .orderDetails(OrderDetailEntity.builder()
+                .orderDetail(OrderDetailEntity.builder()
                         .notes(order.getOrderDetail().getNotes())
                         .dateTime(order.getOrderDetail().getDateTime())
                         .deliveryMethod(order.getOrderDetail().getDeliveryMethod())
@@ -61,19 +61,19 @@ public class OrderMapper {
 
     public Order orderEntityToOrder(OrderEntity order) {
 
-        var listItems = new ArrayList<Item>();
+        var listItems = new ArrayList<ItemOrder>();
         order.getItems().forEach(product -> {
-            var items = new Item(product.getProdutoId(), product.getNome(), product.getDescricao(),
-                    product.getQuantidade(), product.getPrecoUnitario(), product.getTotalItem());
-            listItems.add(items);
+//            var items = new ItemOrder(product.getProdutoId(), product.getNome(), product.getDescricao(),
+//                    product.getQuantidade(), product.getPrecoUnitario(), product.getTotalItem());
+//            listItems.add(items);
         });
-        var client = new Client(order.getClient().getName(), order.getClient().getPhone(), order.getClient().getEmail(), order.getClient().getDocument(),
-                new Address(order.getClient().getAddress().getPostalCode(), order.getClient().getAddress().getStreet(), order.getClient().getAddress().getState(),
-                        order.getClient().getAddress().getCity(), order.getClient().getAddress().getNumber()));
-        var orderDetail = new OrderDetail(order.getOrderDetails().getDateTime(), order.getOrderDetails().getNotes(), order.getOrderDetails().getDeliveryMethod());
+        var client = new CustomerOrder(order.getCustomer().getName(), order.getCustomer().getPhone(), order.getCustomer().getEmail(), order.getCustomer().getDocument(),
+                new Address(order.getCustomer().getAddress().getPostalCode(), order.getCustomer().getAddress().getStreet(), order.getCustomer().getAddress().getState(),
+                        order.getCustomer().getAddress().getCity(), order.getCustomer().getAddress().getNumber()));
+        var orderDetail = new OrderDetail(order.getOrderDetail().getDateTime(), order.getOrderDetail().getNotes(), order.getOrderDetail().getDeliveryMethod());
         var total = new Total(order.getTotal().getSubtotal(), order.getTotal().getTaxes(), order.getTotal().getDiscount(), order.getTotal().getFinalTotal());
         var payment = new Payment(order.getPayment().getMethod(), PaymentEnum.getValue(order.getPayment().getStatus()), order.getPayment().getDetails());
 
-        return new Order(client, listItems, orderDetail, total, payment);
+        return null;
     }
 }

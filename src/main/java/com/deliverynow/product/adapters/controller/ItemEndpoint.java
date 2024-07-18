@@ -20,8 +20,9 @@ public class ItemEndpoint {
     SelectItemUseCase selectItemUseCase;
     RemoveItemUseCase removeItemUseCase;
 
-    public ItemEndpoint(SelectItemUseCase selectItemUseCase) {
+    public ItemEndpoint(SelectItemUseCase selectItemUseCase, RemoveItemUseCase removeItemUseCase) {
         this.selectItemUseCase = selectItemUseCase;
+        this.removeItemUseCase = removeItemUseCase;
     }
 
     @POST

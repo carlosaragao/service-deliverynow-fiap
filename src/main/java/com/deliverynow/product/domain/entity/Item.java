@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Item {
 
+    private String itemId;
     private String productId;
     private String customerId;
     private String name;

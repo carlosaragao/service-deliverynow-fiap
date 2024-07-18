@@ -10,4 +10,5 @@ public interface CustomerGateway {
     void saveCustomer(Customer client);
 
     Optional<Customer> getCustomerByDocument(String document);
+    Customer getCustomerById(String customerId);
 }

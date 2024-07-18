@@ -9,10 +9,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
+public class ItemOrder {
+
+    private String itemId;
+    private String productId;
     private String name;
-    private String phone;
-    private String email;
-    private String document;
-    private Address address;
+    private String category;
+    private String description;
+    private Integer quantity;
+    private Double unitPrice;
+    private Double totalPrice;
 }

@@ -1,7 +1,5 @@
-package com.deliverynow.order.domain.entity;
+package com.deliverynow.order.adapters.controller.response;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,26 +10,21 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class ItemResponse {
+    @Schema(description = "ID do produto", example = "66884a540d50845947ff6349")
+    private String itemId;
     @Schema(description = "ID do produto", example = "001")
-    @NotBlank(message = "O ID do produto não pode estar em branco")
     private String productId;
-
     @Schema(description = "Nome do produto", example = "Hambúrguer")
-    @NotBlank(message = "O nome do produto não pode estar em branco")
     private String name;
-
+    @Schema(description = "Categoria do produto", example = "LANCHE")
+    private String category;
     @Schema(description = "Descrição do produto", example = "Delicioso hambúrguer com queijo, alface, tomate e molho especial.")
     private String description;
-
     @Schema(description = "Quantidade do produto disponível", example = "10")
-    @NotNull(message = "A quantidade não pode ser nula")
     private Integer quantity;
-
     @Schema(description = "Preço unitário do produto", example = "12.50")
-    @NotNull(message = "O preço unitário não pode ser nulo")
     private Double unitPrice;
-
-    @Schema(description = "Preço total dos itens", example = "125.00")
-    private Double totalItem;
+    @Schema(description = "Preço total do produto", example = "120.50")
+    private Double totalPrice;
 }

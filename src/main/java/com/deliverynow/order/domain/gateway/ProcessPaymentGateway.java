@@ -1,8 +1,9 @@
 package com.deliverynow.order.domain.gateway;
 
-import com.deliverynow.order.domain.entity.Payment;
+import com.deliverynow.order.domain.entity.Order;
+import com.deliverynow.order.infrastructure.rest.response.QrCodeResponse;
 
 public interface ProcessPaymentGateway {
 
-    Payment processPayment(Payment payment);
+    QrCodeResponse processPayment(Order order);
 }

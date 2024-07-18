@@ -2,7 +2,9 @@ package com.deliverynow.order.application.usecase;
 
 import com.deliverynow.order.adapters.controller.response.OrderResponse;
 
-public interface ResumeOrderUseCase {
+import java.util.List;
 
-    OrderResponse getResumeOrder(String customerId);
+public interface GetOrderByStatusUseCase {
+
+    List<OrderResponse> getOrderByStatus();
 }

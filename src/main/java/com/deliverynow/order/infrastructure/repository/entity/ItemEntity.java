@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ItemEntity {
 
-    private String produtoId;
-    private String nome;
-    private String descricao;
-    private Integer quantidade;
-    private Double precoUnitario;
-    private Double totalItem;
+    private String productId;
+    private String name;
+    private String category;
+    private String description;
+    private Integer quantity;
+    private Double unitPrice;
+    private Double totalPrice;
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderRequest {
 
-    private ClientRequest client;
+    private CustomerRequest customer;
     @Valid
     @Size(min = 1,message = "Informe algum item")
     private List<ItemRequest> items;

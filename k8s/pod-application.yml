@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-deliverynow
+  labels:
+    app: service-deliverynow
+spec:
+  containers:
+    - name: apilocal
+      image: lodc1992/service-deliverynow:tagname
+      env:
+        - name: QUARKUS_MONGODB_CONNECTION_STRING
+          valueFrom:
+            configMapKeyRef:
+              key: QUARKUS_MONGODB_CONNECTION_STRING
+              name: db-config
+      ports:
+        - containerPort: 8080
+      resources:
+        limits:
+          cpu: "0.5"
+          memory: "512Mi"
+        requests:
+          cpu: "0.2"
+          memory: "256Mi"

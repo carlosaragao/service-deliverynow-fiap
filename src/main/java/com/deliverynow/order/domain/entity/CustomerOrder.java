@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Payment{
-
-    private String method;
-
-    private PaymentEnum status;
-
-    private String details;
+public class CustomerOrder {
+    private String name;
+    private String phone;
+    private String email;
+    private String document;
+    private Address address;
 }
