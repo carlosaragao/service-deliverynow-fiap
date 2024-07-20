@@ -9,6 +9,7 @@ import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class OrderRepositoryGateway implements OrderGateway {
@@ -32,5 +33,17 @@ public class OrderRepositoryGateway implements OrderGateway {
         var orderEntities = orderRepository.listAll();
         return orderEntities.stream()
                 .map(order -> orderMapper.entityToDomain(order)).toList();
+    }
+
+    @Override
+    public Optional<Order> getOrderById(String orderId) {
+        return orderRepository.findByOrderId(orderId)
+                .map(orderEntity -> orderMapper.entityToDomain(orderEntity));
+    }
+
+    @Override
+    public void updateOrder(Order order) {
+        orderRepository.update("statusOrder", order.getStatusOrder())
+                .where("orderId", order.getOrderId());
     }
 }

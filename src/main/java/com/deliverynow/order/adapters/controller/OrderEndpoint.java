@@ -2,11 +2,13 @@ package com.deliverynow.order.adapters.controller;
 
 
 import com.deliverynow.order.adapters.controller.request.OrderRequest;
+import com.deliverynow.order.adapters.controller.request.OrderUpdateStatusRequest;
 import com.deliverynow.order.adapters.controller.response.BaseResponse;
 import com.deliverynow.order.adapters.controller.response.OrderResponse;
 import com.deliverynow.order.application.usecase.CreateOrderUseCase;
 import com.deliverynow.order.application.usecase.GetOrderByStatusUseCase;
 import com.deliverynow.order.application.usecase.ResumeOrderUseCase;
+import com.deliverynow.order.application.usecase.UpdateStatusOrderUseCase;
 import com.deliverynow.order.domain.entity.Order;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -26,11 +28,14 @@ public class OrderEndpoint {
     CreateOrderUseCase createOrderUseCase;
     ResumeOrderUseCase resumeOrderUseCase;
     GetOrderByStatusUseCase getOrderByStatusUseCase;
+    UpdateStatusOrderUseCase updateStatusOrderUseCase;
 
-    public OrderEndpoint(CreateOrderUseCase createOrderUseCase, ResumeOrderUseCase resumeOrderUseCase, GetOrderByStatusUseCase getOrderByStatusUseCase) {
+    public OrderEndpoint(CreateOrderUseCase createOrderUseCase, ResumeOrderUseCase resumeOrderUseCase, GetOrderByStatusUseCase getOrderByStatusUseCase, UpdateStatusOrderUseCase updateStatusOrderUseCase) {
+
         this.createOrderUseCase = createOrderUseCase;
         this.resumeOrderUseCase = resumeOrderUseCase;
         this.getOrderByStatusUseCase = getOrderByStatusUseCase;
+        this.updateStatusOrderUseCase = updateStatusOrderUseCase;
     }
 
     @POST
@@ -54,6 +59,14 @@ public class OrderEndpoint {
     public RestResponse<BaseResponse<OrderResponse>> getResumeOrder(@PathParam("customerId") String id) {
         var resumeOrder = resumeOrderUseCase.getResumeOrder(id);
         return RestResponse.ok(new BaseResponse<>(resumeOrder));
+    }
+
+    @PUT
+    @Path("/update/status")
+    @Operation(summary = "Atualizar status")
+    public RestResponse<Void> updateOrder(@Valid OrderUpdateStatusRequest orderRequest) {
+        updateStatusOrderUseCase.updateStatus(orderRequest);
+        return RestResponse.ok();
     }
 }
 

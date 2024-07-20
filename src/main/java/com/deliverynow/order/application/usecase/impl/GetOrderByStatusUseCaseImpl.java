@@ -23,7 +23,8 @@ public class GetOrderByStatusUseCaseImpl implements GetOrderByStatusUseCase {
     public List<OrderResponse> getOrderByStatus() {
         var orders = orderGateway.listOrders();
         return orders.stream()
-                .filter(order -> order.getStatusOrder() != OrderStatusEnum.FINALIZADO)
+                .filter(order -> order.getStatusOrder() != OrderStatusEnum.FINALIZADO &&
+                        order.getStatusOrder() != OrderStatusEnum.AGUARDANDO_PAGAMENTO)
                 .sorted(Order.COMPARATOR)
                 .map(order -> orderMapperV2.domainToResponse(order))
                 .toList();

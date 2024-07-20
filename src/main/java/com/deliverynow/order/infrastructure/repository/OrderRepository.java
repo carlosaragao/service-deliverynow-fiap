@@ -6,13 +6,12 @@ import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class OrderRepository implements PanacheMongoRepository<OrderEntity> {
 
-//    public List<OrderEntity> findAllSorted() {
-//        return find(
-//                "ORDER BY FIELD(statusOrder, 'PRONTO', 'EM_PREPARACAO', 'RECEBIDO'), createDate ASC"
-//        )..list();
-//    }
+    public Optional<OrderEntity> findByOrderId(String orderId) {
+        return find("orderId", orderId).firstResultOptional();
+    }
 }
