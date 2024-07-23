@@ -1,7 +1,7 @@
 package com.deliverynow.order.application.usecase.impl;
 
 import com.deliverynow.order.adapters.controller.response.OrderResponse;
-import com.deliverynow.order.application.mapper.OrderMapperV2;
+import com.deliverynow.order.application.mapper.OrderMapper;
 import com.deliverynow.order.application.usecase.GetOrderByStatusUseCase;
 import com.deliverynow.order.domain.entity.Order;
 import com.deliverynow.order.domain.entity.OrderStatusEnum;
@@ -12,11 +12,11 @@ import java.util.List;
 public class GetOrderByStatusUseCaseImpl implements GetOrderByStatusUseCase {
 
     OrderGateway orderGateway;
-    OrderMapperV2 orderMapperV2;
+    OrderMapper orderMapper;
 
-    public GetOrderByStatusUseCaseImpl(OrderGateway orderGateway, OrderMapperV2 orderMapperV2) {
+    public GetOrderByStatusUseCaseImpl(OrderGateway orderGateway, OrderMapper orderMapper) {
         this.orderGateway = orderGateway;
-        this.orderMapperV2 = orderMapperV2;
+        this.orderMapper = orderMapper;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class GetOrderByStatusUseCaseImpl implements GetOrderByStatusUseCase {
                 .filter(order -> order.getStatusOrder() != OrderStatusEnum.FINALIZADO &&
                         order.getStatusOrder() != OrderStatusEnum.AGUARDANDO_PAGAMENTO)
                 .sorted(Order.COMPARATOR)
-                .map(order -> orderMapperV2.domainToResponse(order))
+                .map(order -> orderMapper.domainToResponse(order))
                 .toList();
     }
 }

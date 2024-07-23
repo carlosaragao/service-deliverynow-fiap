@@ -19,7 +19,6 @@ public class Order {
     private List<ItemOrder> items;
     private OrderDetail orderDetail;
     private Total total;
-    private Payment payment;
 
     public void calculatedTotal() {
 
@@ -36,13 +35,6 @@ public class Order {
 
     public void setCreateDate() {
         this.createDate = LocalDateTime.now();
-    }
-
-    public void setPayment(String method, PaymentEnum paymentEnum) {
-        this.payment = Payment.builder()
-                .method(method)
-                .status(paymentEnum)
-                .build();
     }
 
     public void setOrderId() {

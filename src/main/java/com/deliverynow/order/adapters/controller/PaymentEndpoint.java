@@ -1,8 +1,10 @@
 package com.deliverynow.order.adapters.controller;
 
 import com.deliverynow.order.adapters.controller.response.BaseResponse;
+import com.deliverynow.order.adapters.controller.response.PaymentResponse;
 import com.deliverynow.order.adapters.controller.response.QrCodePaymentResponse;
 import com.deliverynow.order.application.usecase.GenerateQrCodeUseCase;
+import com.deliverynow.order.application.usecase.PaymentStatusUseCase;
 import com.deliverynow.order.application.usecase.ProcessPaymentUseCase;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -18,10 +20,21 @@ public class PaymentEndpoint {
 
     GenerateQrCodeUseCase qrCodeUseCase;
     ProcessPaymentUseCase processPaymentUseCase;
+    PaymentStatusUseCase paymentStatusUseCase;
 
-    public PaymentEndpoint(GenerateQrCodeUseCase qrCodeUseCase, ProcessPaymentUseCase processPaymentUseCase) {
+    public PaymentEndpoint(GenerateQrCodeUseCase qrCodeUseCase, ProcessPaymentUseCase
+            processPaymentUseCase, PaymentStatusUseCase paymentStatusUseCase) {
         this.qrCodeUseCase = qrCodeUseCase;
         this.processPaymentUseCase = processPaymentUseCase;
+        this.paymentStatusUseCase = paymentStatusUseCase;
+    }
+
+    @GET
+    @Path("{orderId}")
+    @Operation(summary = "Gerar codigo QrCode")
+    public RestResponse<BaseResponse<PaymentResponse>> getpayment(@PathParam("orderId") String id) {
+        var paymentByStatus = paymentStatusUseCase.getPaymentByStatus(id);
+        return RestResponse.ok(new BaseResponse<>(paymentByStatus));
     }
 
     @GET

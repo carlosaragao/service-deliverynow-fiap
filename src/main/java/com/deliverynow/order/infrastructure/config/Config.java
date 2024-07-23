@@ -1,11 +1,15 @@
 package com.deliverynow.order.infrastructure.config;
 
 
+import com.deliverynow.order.adapters.gateway.PaymentRepositoryGateway;
 import com.deliverynow.order.application.mapper.ItemOrderMapper;
-import com.deliverynow.order.application.mapper.OrderMapperV2;
+import com.deliverynow.order.application.mapper.OrderMapper;
+import com.deliverynow.order.application.mapper.PaymentMapper;
+import com.deliverynow.order.application.usecase.UpdateStatusOrderUseCase;
 import com.deliverynow.order.application.usecase.impl.*;
 import com.deliverynow.order.domain.gateway.OrderGateway;
 import com.deliverynow.order.domain.gateway.PaymentGateway;
+import com.deliverynow.order.domain.gateway.ProcessPaymentGateway;
 import com.deliverynow.order.domain.gateway.QrCodePaymentGateway;
 import com.deliverynow.product.domain.gateway.ItemGateway;
 import com.deliverynow.user.domain.gateway.CustomerGateway;
@@ -16,18 +20,18 @@ import jakarta.enterprise.inject.Default;
 public class Config {
 
     @Default
-    public ResumeOrderUseCaseImpl resumeOrderUseCase(ItemGateway itemGateway, CustomerGateway customerGateway, ItemOrderMapper itemOrderMapper, OrderMapperV2 orderMapperV2) {
-        return new ResumeOrderUseCaseImpl(itemGateway, customerGateway, itemOrderMapper, orderMapperV2);
+    public ResumeOrderUseCaseImpl resumeOrderUseCase(ItemGateway itemGateway, CustomerGateway customerGateway, ItemOrderMapper itemOrderMapper, OrderMapper orderMapper) {
+        return new ResumeOrderUseCaseImpl(itemGateway, customerGateway, itemOrderMapper, orderMapper);
     }
 
     @Default
-    public CreateOrderUseCaseImpl createOrderUseCase(OrderGateway orderGateway, OrderMapperV2 orderMapperV2) {
-        return new CreateOrderUseCaseImpl(orderGateway, orderMapperV2);
+    public CreateOrderUseCaseImpl createOrderUseCase(OrderGateway orderGateway, OrderMapper orderMapper) {
+        return new CreateOrderUseCaseImpl(orderGateway, orderMapper);
     }
 
     @Default
-    public GetOrderByStatusUseCaseImpl getOrderByStatusUseCase(OrderGateway orderGateway, OrderMapperV2 orderMapperV2) {
-        return new GetOrderByStatusUseCaseImpl(orderGateway, orderMapperV2);
+    public GetOrderByStatusUseCaseImpl getOrderByStatusUseCase(OrderGateway orderGateway, OrderMapper orderMapper) {
+        return new GetOrderByStatusUseCaseImpl(orderGateway, orderMapper);
     }
 
     @Default
@@ -36,12 +40,17 @@ public class Config {
     }
 
     @Default
-    public ProcessPaymentUseCaseImpl processPaymentUseCase(PaymentGateway paymentGateway) {
-        return new ProcessPaymentUseCaseImpl(paymentGateway);
+    public ProcessPaymentUseCaseImpl processPaymentUseCase(PaymentMapper paymentMapper, ProcessPaymentGateway processPaymentGateway, UpdateStatusOrderUseCase updateStatusOrderUseCase, PaymentRepositoryGateway paymentRepositoryGateway) {
+        return new ProcessPaymentUseCaseImpl(paymentMapper, processPaymentGateway, updateStatusOrderUseCase, paymentRepositoryGateway);
     }
 
     @Default
     public UpdateStatusOrderUseCaseImpl updateStatusOrderUseCase(OrderGateway orderGateway) {
         return new UpdateStatusOrderUseCaseImpl(orderGateway);
+    }
+
+    @Default
+    public PaymentStatusUseCaseImpl paymentStatusUseCase(PaymentGateway paymentGateway, PaymentMapper paymentMapper) {
+        return new PaymentStatusUseCaseImpl(paymentGateway, paymentMapper);
     }
 }

@@ -1,6 +1,5 @@
 package com.deliverynow.order.application.usecase.impl;
 
-import com.deliverynow.order.adapters.controller.request.OrderUpdateStatusRequest;
 import com.deliverynow.order.application.exception.OrderException;
 import com.deliverynow.order.application.usecase.UpdateStatusOrderUseCase;
 import com.deliverynow.order.domain.entity.OrderStatusEnum;
@@ -15,10 +14,10 @@ public class UpdateStatusOrderUseCaseImpl implements UpdateStatusOrderUseCase {
     }
 
     @Override
-    public void updateStatus(OrderUpdateStatusRequest orderUpdateStatusRequest) {
-        var orderOption = orderGateway.getOrderById(orderUpdateStatusRequest.getOrderId());
+    public void updateStatus(String orderId, String status) {
+        var orderOption = orderGateway.getOrderById(orderId);
         orderOption.ifPresentOrElse(order -> {
-            order.setStatusOrder(OrderStatusEnum.getStatus(orderUpdateStatusRequest.getStatus()));
+            order.setStatusOrder(OrderStatusEnum.getStatus(status));
             orderGateway.updateOrder(order);
                 },
                 () -> {

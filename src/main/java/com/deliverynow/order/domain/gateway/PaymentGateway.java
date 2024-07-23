@@ -1,8 +1,11 @@
 package com.deliverynow.order.domain.gateway;
 
-import com.deliverynow.order.infrastructure.rest.response.PaymentResponse;
+import com.deliverynow.order.domain.entity.Payment;
+
+import java.util.Optional;
 
 public interface PaymentGateway {
 
-    PaymentResponse processPayment(String orderId);
+    void insertPayment(Payment payment);
+    Optional<Payment> getByOrderId(String orderId);
 }

@@ -23,5 +23,4 @@ public class OrderEntity {
     private List<ItemEntity> items;
     private OrderDetailEntity orderDetail;
     private TotalEntity total;
-    private PaymentEntity payment;
 }

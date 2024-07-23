@@ -11,11 +11,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import org.jboss.resteasy.reactive.ClientWebApplicationException;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,21 +41,23 @@ public class QrCodePaymentRestGateway implements QrCodePaymentGateway {
 
     private QrCodeRequest buildPaymentRequest(Order oder) {
 
-        LocalDateTime localDateTime = LocalDateTime.now().plusMinutes(10L);
-        ZoneId zoneId = ZoneId.of("America/New_York"); // Exemplo de um fuso horário com -04:00
-        ZonedDateTime zonedDateTime = localDateTime.atZone(zoneId);
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        String formattedDateTime = zonedDateTime.format(formatter);
-
         return QrCodeRequest.builder()
                 .description("Delivery Now payment")
                 .externalReference(oder.getOrderId())
-                .expirationDate(formattedDateTime)
+                .expirationDate(getExpirationDate())
                 .items(buildItemsPayment(oder))
-                .notificationUrl("https://webhook-test.com/11c6fe21038e5a032647badd306cf0e9")
+                .notificationUrl("https://4563-138-99-251-149.ngrok-free.app/service-delivery-user/payment/webhook")
                 .title("Product order")
                 .totalAmount(oder.getTotal().getFinalTotal())
                 .build();
+    }
+
+    private String getExpirationDate() {
+        var localDateTime = LocalDateTime.now().plusMinutes(10L);
+        var zoneId = ZoneId.of("America/New_York"); // Exemplo de um fuso horário com -04:00
+        var zonedDateTime = localDateTime.atZone(zoneId);
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        return zonedDateTime.format(formatter);
     }
 
     private List<QrCodeItemRequest> buildItemsPayment(Order oder) {

@@ -63,9 +63,9 @@ public class OrderEndpoint {
 
     @PUT
     @Path("/update/status")
-    @Operation(summary = "Atualizar status")
+    @Operation(summary = "Atualizar status pedido")
     public RestResponse<Void> updateOrder(@Valid OrderUpdateStatusRequest orderRequest) {
-        updateStatusOrderUseCase.updateStatus(orderRequest);
+        updateStatusOrderUseCase.updateStatus(orderRequest.getOrderId(), orderRequest.getStatus());
         return RestResponse.ok();
     }
 }

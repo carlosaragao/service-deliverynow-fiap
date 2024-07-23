@@ -3,7 +3,7 @@ package com.deliverynow.order.application.usecase.impl;
 import com.deliverynow.order.adapters.controller.response.OrderResponse;
 import com.deliverynow.order.application.exception.OrderException;
 import com.deliverynow.order.application.mapper.ItemOrderMapper;
-import com.deliverynow.order.application.mapper.OrderMapperV2;
+import com.deliverynow.order.application.mapper.OrderMapper;
 import com.deliverynow.order.application.usecase.ResumeOrderUseCase;
 import com.deliverynow.order.domain.entity.Order;
 import com.deliverynow.product.domain.gateway.ItemGateway;
@@ -14,13 +14,13 @@ public class ResumeOrderUseCaseImpl implements ResumeOrderUseCase {
     ItemGateway itemGateway;
     CustomerGateway customerGateway;
     ItemOrderMapper itemOrderMapper;
-    OrderMapperV2 orderMapperV2;
+    OrderMapper orderMapper;
 
-    public ResumeOrderUseCaseImpl(ItemGateway itemGateway, CustomerGateway customerGateway, ItemOrderMapper itemOrderMapper, OrderMapperV2 orderMapperV2) {
+    public ResumeOrderUseCaseImpl(ItemGateway itemGateway, CustomerGateway customerGateway, ItemOrderMapper itemOrderMapper, OrderMapper orderMapper) {
         this.itemGateway = itemGateway;
         this.customerGateway = customerGateway;
         this.itemOrderMapper = itemOrderMapper;
-        this.orderMapperV2 = orderMapperV2;
+        this.orderMapper = orderMapper;
     }
 
     @Override
@@ -31,10 +31,10 @@ public class ResumeOrderUseCaseImpl implements ResumeOrderUseCase {
             var customer = customerGateway.getCustomerById(customerId);
             var order = Order.builder()
                     .items(itemOrderMapper.itemsToItemsOrder(itemsByCustomer))
-                    .customer(orderMapperV2.customerToCustomerOrder(customer))
+                    .customer(orderMapper.customerToCustomerOrder(customer))
                     .build();
             order.calculatedTotal();
-            return orderMapperV2.domainToResponse(order);
+            return orderMapper.domainToResponse(order);
         } else {
             throw new OrderException("Item not found for the id provided");
         }

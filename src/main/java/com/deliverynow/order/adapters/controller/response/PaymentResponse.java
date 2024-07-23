@@ -1,4 +1,4 @@
-package com.deliverynow.order.domain.entity;
+package com.deliverynow.order.adapters.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Payment {
+public class PaymentResponse {
 
     private String paymentId;
     private String orderId;
