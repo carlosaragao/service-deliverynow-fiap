@@ -9,6 +9,8 @@ import com.deliverynow.user.domain.gateway.CustomerGateway;
 
 public class InsertCustomerUseCaseImpl implements InsertCustomerUseCase {
 
+
+
     private final AddressGateway addressGateway;
     private final CustomerGateway customerGateway;
     private final CustomerMapper customerMapper;

@@ -13,6 +13,8 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 public interface CustomerMapper {
 
     CustomerResponse domainToResponse(Customer customer);
+
+    @Mapping(target = "sessionId", ignore = true)
     CustomerEntity userToUserEntity(Customer customer);
     Customer toDomain(CustomerEntity user);
 

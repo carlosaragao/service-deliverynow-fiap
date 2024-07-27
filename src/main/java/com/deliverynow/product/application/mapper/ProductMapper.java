@@ -12,9 +12,11 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 @Mapper(componentModel = "jakarta", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ProductMapper {
 
-
+    @Mapping(target = "registrationDate", ignore = true)
     @Mapping(target = "id", expression = "java(stringToObjectId(product.getId()))")
     ProductEntity productToProductEntity(Product product);
+
+    @Mapping(target = "id", ignore = true)
     Product requestToDomain(ProductRequest productRequest);
 
     @Mapping(target = "id", expression = "java(objectIdToString(productEntity.getId()))")

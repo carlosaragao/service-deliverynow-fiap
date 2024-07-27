@@ -17,6 +17,7 @@ import java.util.List;
 public class OrderEntity {
 
     private String orderId;
+    private String sessionId;
     private LocalDateTime createDate;
     private String statusOrder;
     private ClientEntity customer;

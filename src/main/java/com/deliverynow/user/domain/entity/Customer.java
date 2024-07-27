@@ -1,6 +1,5 @@
 package com.deliverynow.user.domain.entity;
 
-import com.deliverynow.user.domain.entity.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

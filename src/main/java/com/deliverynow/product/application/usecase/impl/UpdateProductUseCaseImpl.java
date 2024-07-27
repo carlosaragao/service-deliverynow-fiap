@@ -24,14 +24,9 @@ public class UpdateProductUseCaseImpl implements UpdateProductUseCase {
         CategoryEnum.validateCategory(productRequest.category());
         var productById = productGateway.getProductById(productId);
         return productById.map(pr -> {
-            if (!pr.getName().equalsIgnoreCase(productRequest.name())) {
-                var product = productMapper.requestToDomain(productRequest);
-                var updateProduct = productGateway.updateProduct(productId, product);
-                return productMapper.domainToResponse(updateProduct);
-            } else {
-                throw new ProductException("Product already exists with the name provided");
-            }
+            var product = productMapper.requestToDomain(productRequest);
+            var updateProduct = productGateway.updateProduct(productId, product);
+            return productMapper.domainToResponse(updateProduct);
         }).orElseThrow(() -> new ProductException("Product not found for update"));
-
     }
 }

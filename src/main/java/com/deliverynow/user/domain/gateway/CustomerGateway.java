@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface CustomerGateway {
 
     void saveCustomer(Customer client);
+    void updateCustomer(String document, String sessionId);
 
     Optional<Customer> getCustomerByDocument(String document);
-    Customer getCustomerById(String customerId);
+    Optional<Customer> getCustomerById(String customerId);
 }

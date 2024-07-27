@@ -1,5 +1,6 @@
 package com.deliverynow.user.infrastructure.config;
 
+import com.deliverynow.user.application.usecase.impl.CreateSessionCustomerUseCaseImpl;
 import com.deliverynow.user.application.usecase.impl.GetCustomerByDocumentUseCaseImpl;
 import com.deliverynow.user.application.usecase.impl.InsertCustomerUseCaseImpl;
 import com.deliverynow.user.application.mapper.CustomerMapper;
@@ -19,5 +20,10 @@ public class CustomerUsaCaseConfig {
     @Default
     public GetCustomerByDocumentUseCaseImpl getCustomerByDocument(CustomerGateway customerGateway, CustomerMapper customerMapper) {
         return new GetCustomerByDocumentUseCaseImpl(customerGateway, customerMapper);
+    }
+
+    @Default
+    public CreateSessionCustomerUseCaseImpl createSessionCustomerUseCase(CustomerGateway customerGateway) {
+        return new CreateSessionCustomerUseCaseImpl(customerGateway);
     }
 }

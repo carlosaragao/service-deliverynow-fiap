@@ -21,9 +21,9 @@ public class GetProductByCategoryUseCaseImpl implements GetProductByCategoryUseC
 
     @Override
     public List<ProductResponse> getProductByCategory(String category) {
-        CategoryEnum.validateCategory(category);
-        var productByCategory = productGateway.getProductByCategory(category);
+        CategoryEnum.validateCategory(category.toUpperCase());
+        var productByCategory = productGateway.getProductByCategory(category.toUpperCase());
         return productByCategory.stream()
-                .map(productMapper::domainToResponse).collect(Collectors.toList());
+                .map(productMapper::domainToResponse).toList();
     }
 }

@@ -12,6 +12,8 @@ import java.util.Random;
 @AllArgsConstructor
 public class Order {
     private String orderId;
+    @Setter
+    private String sessionId;
     private LocalDateTime createDate;
     @Setter
     private OrderStatusEnum statusOrder;
@@ -27,7 +29,7 @@ public class Order {
                 .mapToDouble(ItemOrder::getTotalPrice).sum();
         this.total = Total.builder()
                 .subtotal(subTotal)
-                .discounts(0.0)
+                .discount(0.0)
                 .taxes(0.0)
                 .finalTotal(subTotal)
                 .build();

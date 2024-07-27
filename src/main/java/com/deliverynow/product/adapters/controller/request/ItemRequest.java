@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ItemRequest {
 
-    private String customerId;
+    private String sessionId;
     private List<ItemProductRequest> products;
 }

@@ -12,7 +12,8 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 @AllArgsConstructor
 @MongoEntity(collection = "item")
-public class ItemEntity {
+public class
+ItemEntity {
 
     private ObjectId id;
     private String productId;

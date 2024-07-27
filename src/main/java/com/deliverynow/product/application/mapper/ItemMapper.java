@@ -10,6 +10,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 @Mapper(componentModel = "jakarta", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ItemMapper {
 
+    @Mapping(target = "id", expression = "java(stringToObjectId(item.getItemId()))")
     ItemEntity domainToEntity(Item item);
 
     @Mapping(target = "itemId", expression = "java(objectIdToString(itemEntity.getId()))")
@@ -17,5 +18,9 @@ public interface ItemMapper {
 
     default String objectIdToString(ObjectId objectId) {
         return objectId == null ? null : objectId.toHexString();
+    }
+
+    default ObjectId stringToObjectId(String id) {
+        return id == null ? null : new ObjectId(id);
     }
 }

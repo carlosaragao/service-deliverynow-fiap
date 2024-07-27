@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ItemEntity {
 
+    private String itemId;
     private String productId;
     private String name;
     private String category;

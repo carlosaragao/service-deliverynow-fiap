@@ -7,7 +7,7 @@ const crientCollection = 'customer';
 const productCollection = 'product';
 const orderCollection = 'order';
 
-db = db.getSiblingDB(database); // Seleciona o banco de dados 'mydatabase'
+db = db.getSiblingDB(database);
 db.createCollection(crientCollection);
 db.createCollection(productCollection);
 db.createCollection(orderCollection);

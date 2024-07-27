@@ -18,7 +18,7 @@ public interface QrCodeRest {
     @Path("/{user_id}/pos/{external_pos_id}/qrs")
     QrCodeResponse generatedQrCode(@HeaderParam("Authorization") String authorization,
                                    @PathParam("user_id") String userId,
-                                   @PathParam("external_pos_id") String externalPos_id,
+                                   @PathParam("external_pos_id") String externalPosId,
                                    QrCodeRequest paymentRequest);
 
     @ClientExceptionMapper

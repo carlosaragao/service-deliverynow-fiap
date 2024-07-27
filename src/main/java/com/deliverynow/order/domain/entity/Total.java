@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class Total {
     private Double subtotal;
     private Double taxes;
-    private Double discounts;
+    private Double discount;
     private Double finalTotal;
 }

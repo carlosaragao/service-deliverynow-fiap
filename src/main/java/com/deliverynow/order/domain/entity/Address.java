@@ -30,5 +30,5 @@ public class Address {
 
     @Schema(description = "Número da residência", example = "1000")
     @NotBlank(message = "O numero não pode estar em branco")
-    private String number;
+    private String numberAddress;
 }

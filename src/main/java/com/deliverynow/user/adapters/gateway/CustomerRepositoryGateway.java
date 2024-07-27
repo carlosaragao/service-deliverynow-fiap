@@ -28,17 +28,21 @@ public class CustomerRepositoryGateway implements CustomerGateway {
     }
 
     @Override
+    public void updateCustomer(String document, String sessionId) {
+        customerRepository.update("sessionId", sessionId).where("document", document);
+    }
+
+    @Override
     public Optional<Customer> getCustomerByDocument(String document) {
         var userByDocument = customerRepository.getUserByDocument(document);
         return userByDocument.map(user -> customerMapper.toDomain(user));
     }
 
     @Override
-    public Customer getCustomerById(String customerId) {
-        var customerEntity = customerRepository.findByIdOptional(new ObjectId(customerId));
+    public Optional<Customer> getCustomerById(String sessionId) {
+        var customerEntity = customerRepository.getUserBySessionId(sessionId);
         return customerEntity
-                .map(customer -> customerMapper.toDomain(customer))
-                .orElse(new Customer());
+                .map(customer -> customerMapper.toDomain(customer));
     }
 }
 

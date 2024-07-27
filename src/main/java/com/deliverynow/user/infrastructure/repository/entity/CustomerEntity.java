@@ -14,7 +14,7 @@ import org.bson.types.ObjectId;
 @MongoEntity(collection="customer")
 public class CustomerEntity {
 
-    private ObjectId id;
+    private String sessionId;
     private String name;
     private String phone;
     private String email;

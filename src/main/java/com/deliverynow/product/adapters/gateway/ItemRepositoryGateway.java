@@ -8,6 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.bson.types.ObjectId;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class ItemRepositoryGateway implements ItemGateway {
@@ -22,8 +23,14 @@ public class ItemRepositoryGateway implements ItemGateway {
 
     @Override
     public void selectItem(Item item) {
-
         itemRepository.persist(itemMapper.domainToEntity(item));
+    }
+
+    @Override
+    public Optional<Item> getItemById(String id) {
+        return itemRepository
+                .findByIdOptional(new ObjectId(id))
+                .map(itemEntity -> itemMapper.entityToDomain(itemEntity));
     }
 
     @Override
@@ -32,7 +39,7 @@ public class ItemRepositoryGateway implements ItemGateway {
     }
 
     @Override
-    public List<Item> getItemsByCustomer(String customerId) {
+    public List<Item> getItemsBySession(String customerId) {
         var itemEntityList = itemRepository.getItemByCustomer(customerId);
         return itemEntityList.stream()
                 .map(itemEntity -> itemMapper.entityToDomain(itemEntity))

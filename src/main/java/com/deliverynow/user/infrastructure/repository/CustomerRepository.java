@@ -12,4 +12,8 @@ public class CustomerRepository implements PanacheMongoRepository<CustomerEntity
     public Optional<CustomerEntity> getUserByDocument(String document){
         return find("document", document).firstResultOptional();
     }
+
+    public Optional<CustomerEntity> getUserBySessionId(String sessionId){
+        return find("sessionId", sessionId).firstResultOptional();
+    }
 }

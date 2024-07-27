@@ -15,5 +15,5 @@ public class AddressEntity {
     private String street;
     private String state;
     private String city;
-    private String number;
+    private String numberAddress;
 }

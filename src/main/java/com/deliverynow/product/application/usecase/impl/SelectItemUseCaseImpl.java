@@ -37,7 +37,7 @@ public class SelectItemUseCaseImpl implements SelectItemUseCase {
                 .unitPrice(product.getPrice())
                 .productId(product.getId())
                 .description(product.getDescription())
-                .customerId(itemRequest.getCustomerId())
+                .customerId(itemRequest.getSessionId())
                 .category(product.getCategory().getDescription())
                 .build();
         newItem.setTotalPrice();
