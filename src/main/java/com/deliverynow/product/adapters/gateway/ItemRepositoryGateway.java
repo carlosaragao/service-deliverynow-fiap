@@ -1,6 +1,6 @@
 package com.deliverynow.product.adapters.gateway;
 
-import com.deliverynow.product.application.mapper.ItemMapper;
+import com.deliverynow.product.application.presenter.ItemPresenter;
 import com.deliverynow.product.domain.entity.Item;
 import com.deliverynow.product.domain.gateway.ItemGateway;
 import com.deliverynow.product.infrastructure.repository.ItemRepository;
@@ -14,23 +14,23 @@ import java.util.Optional;
 public class ItemRepositoryGateway implements ItemGateway {
 
     ItemRepository itemRepository;
-    ItemMapper itemMapper;
+    ItemPresenter itemPresenter;
 
-    public ItemRepositoryGateway(ItemRepository itemRepository, ItemMapper itemMapper) {
+    public ItemRepositoryGateway(ItemRepository itemRepository, ItemPresenter itemPresenter) {
         this.itemRepository = itemRepository;
-        this.itemMapper = itemMapper;
+        this.itemPresenter = itemPresenter;
     }
 
     @Override
     public void selectItem(Item item) {
-        itemRepository.persist(itemMapper.domainToEntity(item));
+        itemRepository.persist(itemPresenter.domainToEntity(item));
     }
 
     @Override
     public Optional<Item> getItemById(String id) {
         return itemRepository
                 .findByIdOptional(new ObjectId(id))
-                .map(itemEntity -> itemMapper.entityToDomain(itemEntity));
+                .map(itemEntity -> itemPresenter.entityToDomain(itemEntity));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ItemRepositoryGateway implements ItemGateway {
     public List<Item> getItemsBySession(String customerId) {
         var itemEntityList = itemRepository.getItemByCustomer(customerId);
         return itemEntityList.stream()
-                .map(itemEntity -> itemMapper.entityToDomain(itemEntity))
+                .map(itemEntity -> itemPresenter.entityToDomain(itemEntity))
                 .toList();
     }
 }

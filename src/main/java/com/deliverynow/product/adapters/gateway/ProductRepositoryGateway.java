@@ -2,7 +2,7 @@ package com.deliverynow.product.adapters.gateway;
 
 
 import com.deliverynow.product.application.exception.ProductException;
-import com.deliverynow.product.application.mapper.ProductMapper;
+import com.deliverynow.product.application.presenter.ProductPresenter;
 import com.deliverynow.product.domain.entity.Product;
 import com.deliverynow.product.domain.gateway.ProductGateway;
 import com.deliverynow.product.infrastructure.repository.ProductRepository;
@@ -19,11 +19,11 @@ public class ProductRepositoryGateway implements ProductGateway {
 
 
     ProductRepository productRepository;
-    ProductMapper productMapper;
+    ProductPresenter productPresenter;
 
-    public ProductRepositoryGateway(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductRepositoryGateway(ProductRepository productRepository, ProductPresenter productPresenter) {
         this.productRepository = productRepository;
-        this.productMapper = productMapper;
+        this.productPresenter = productPresenter;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ProductRepositoryGateway implements ProductGateway {
 
         var productByNome = productRepository.getProductByName(product.getName());
         if (productByNome.isEmpty()) {
-            ProductEntity entity = productMapper.productToProductEntity(product);
+            ProductEntity entity = productPresenter.productToProductEntity(product);
             productRepository.persist(entity);
         } else {
             throw new ProductException("Product already exists with the name provided");
@@ -41,10 +41,10 @@ public class ProductRepositoryGateway implements ProductGateway {
     @Override
     public Product updateProduct(String productId, Product product) {
 
-        var newProduct = productMapper.productToProductEntity(product);
+        var newProduct = productPresenter.productToProductEntity(product);
         newProduct.setId(new ObjectId(productId));
         productRepository.persistOrUpdate(newProduct);
-        return productMapper.entityToDomain(newProduct);
+        return productPresenter.entityToDomain(newProduct);
     }
 
     @Override
@@ -56,18 +56,18 @@ public class ProductRepositoryGateway implements ProductGateway {
     public List<Product> getProductByCategory(String category) {
         var productByCategory = productRepository.getProductByCategory(category);
         return productByCategory.stream()
-                .map(product -> productMapper.entityToDomain(product)).collect(Collectors.toList());
+                .map(product -> productPresenter.entityToDomain(product)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<Product> getProductByName(String name) {
         var productEntity = productRepository.getProductByName(name);
-        return productEntity.map(product -> productMapper.entityToDomain(product));
+        return productEntity.map(product -> productPresenter.entityToDomain(product));
     }
 
     @Override
     public Optional<Product> getProductById(String productId) {
         var productEntity = productRepository.findByIdOptional(new ObjectId(productId));
-        return productEntity.map(product -> productMapper.entityToDomain(product));
+        return productEntity.map(product -> productPresenter.entityToDomain(product));
     }
 }

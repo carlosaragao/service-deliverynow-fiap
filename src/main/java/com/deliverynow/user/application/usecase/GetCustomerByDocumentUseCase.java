@@ -1,8 +1,8 @@
 package com.deliverynow.user.application.usecase;
 
-import com.deliverynow.user.adapters.controller.response.CustomerResponse;
+import com.deliverynow.user.domain.entity.Customer;
 
 public interface GetCustomerByDocumentUseCase {
 
-    CustomerResponse getUserByDocument(String document);
+    Customer getUserByDocument(String document);
 }

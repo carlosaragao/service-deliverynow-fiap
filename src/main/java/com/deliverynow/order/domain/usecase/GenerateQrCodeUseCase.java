@@ -1,6 +1,6 @@
 package com.deliverynow.order.domain.usecase;
 
-import com.deliverynow.order.adapters.api.response.QrCodePaymentResponse;
+import com.deliverynow.order.adapters.controller.response.QrCodePaymentResponse;
 
 public interface GenerateQrCodeUseCase {
 

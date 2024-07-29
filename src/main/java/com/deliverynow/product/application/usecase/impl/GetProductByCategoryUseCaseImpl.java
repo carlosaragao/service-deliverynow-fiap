@@ -1,29 +1,26 @@
 package com.deliverynow.product.application.usecase.impl;
 
-import com.deliverynow.product.adapters.controller.response.ProductResponse;
-import com.deliverynow.product.application.mapper.ProductMapper;
+import com.deliverynow.product.application.presenter.ProductPresenter;
 import com.deliverynow.product.application.usecase.GetProductByCategoryUseCase;
 import com.deliverynow.product.domain.entity.CategoryEnum;
+import com.deliverynow.product.domain.entity.Product;
 import com.deliverynow.product.domain.gateway.ProductGateway;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GetProductByCategoryUseCaseImpl implements GetProductByCategoryUseCase {
 
     private final ProductGateway productGateway;
-    private final ProductMapper productMapper;
+    private final ProductPresenter productPresenter;
 
-    public GetProductByCategoryUseCaseImpl(ProductGateway productGateway, ProductMapper productMapper) {
+    public GetProductByCategoryUseCaseImpl(ProductGateway productGateway, ProductPresenter productPresenter) {
         this.productGateway = productGateway;
-        this.productMapper = productMapper;
+        this.productPresenter = productPresenter;
     }
 
     @Override
-    public List<ProductResponse> getProductByCategory(String category) {
+    public List<Product> getProductByCategory(String category) {
         CategoryEnum.validateCategory(category.toUpperCase());
-        var productByCategory = productGateway.getProductByCategory(category.toUpperCase());
-        return productByCategory.stream()
-                .map(productMapper::domainToResponse).toList();
+        return productGateway.getProductByCategory(category.toUpperCase());
     }
 }

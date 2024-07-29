@@ -1,6 +1,6 @@
 package com.deliverynow.order.domain.usecase.impl;
 
-import com.deliverynow.order.adapters.api.response.WebHookPayload;
+import com.deliverynow.order.adapters.controller.response.WebHookPayload;
 import com.deliverynow.order.domain.usecase.ValidateWebhookUseCase;
 import com.deliverynow.order.infrastructure.config.OrderProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;

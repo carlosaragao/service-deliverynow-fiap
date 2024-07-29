@@ -1,14 +1,12 @@
 package com.deliverynow.order.application.controller;
 
-import com.deliverynow.order.adapters.api.response.PaymentResponse;
-import com.deliverynow.order.adapters.api.response.QrCodePaymentResponse;
+import com.deliverynow.order.adapters.controller.response.PaymentResponse;
+import com.deliverynow.order.adapters.controller.response.QrCodePaymentResponse;
 import com.deliverynow.order.application.presenter.PaymentPresenter;
 import com.deliverynow.order.domain.usecase.GenerateQrCodeUseCase;
 import com.deliverynow.order.domain.usecase.PaymentStatusUseCase;
 import com.deliverynow.order.domain.usecase.ProcessPaymentUseCase;
 import com.deliverynow.order.domain.usecase.ValidateWebhookUseCase;
-
-import java.util.Optional;
 
 public class PaymentControllerImpl implements PaymentController {
 

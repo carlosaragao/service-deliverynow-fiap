@@ -1,7 +1,7 @@
 package com.deliverynow.order.application.controller;
 
-import com.deliverynow.order.adapters.api.response.PaymentResponse;
-import com.deliverynow.order.adapters.api.response.QrCodePaymentResponse;
+import com.deliverynow.order.adapters.controller.response.PaymentResponse;
+import com.deliverynow.order.adapters.controller.response.QrCodePaymentResponse;
 
 public interface PaymentController {
 

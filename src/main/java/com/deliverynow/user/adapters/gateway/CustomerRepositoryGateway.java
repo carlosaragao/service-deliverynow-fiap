@@ -1,12 +1,10 @@
 package com.deliverynow.user.adapters.gateway;
 
-import com.deliverynow.user.application.mapper.CustomerMapper;
+import com.deliverynow.user.application.presenter.CustomerPresenter;
 import com.deliverynow.user.domain.entity.Customer;
 import com.deliverynow.user.domain.gateway.CustomerGateway;
 import com.deliverynow.user.infrastructure.repository.CustomerRepository;
-import com.deliverynow.user.infrastructure.repository.entity.CustomerEntity;
 import jakarta.enterprise.context.ApplicationScoped;
-import org.bson.types.ObjectId;
 
 import java.util.Optional;
 
@@ -15,16 +13,16 @@ public class CustomerRepositoryGateway implements CustomerGateway {
 
 
     CustomerRepository customerRepository;
-    CustomerMapper customerMapper;
+    CustomerPresenter customerPresenter;
 
-    public CustomerRepositoryGateway(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+    public CustomerRepositoryGateway(CustomerRepository customerRepository, CustomerPresenter customerPresenter) {
         this.customerRepository = customerRepository;
-        this.customerMapper = customerMapper;
+        this.customerPresenter = customerPresenter;
     }
 
     @Override
     public void saveCustomer(Customer client) {
-        customerRepository.persist(customerMapper.userToUserEntity(client));
+        customerRepository.persist(customerPresenter.userToUserEntity(client));
     }
 
     @Override
@@ -35,14 +33,14 @@ public class CustomerRepositoryGateway implements CustomerGateway {
     @Override
     public Optional<Customer> getCustomerByDocument(String document) {
         var userByDocument = customerRepository.getUserByDocument(document);
-        return userByDocument.map(user -> customerMapper.toDomain(user));
+        return userByDocument.map(user -> customerPresenter.toDomain(user));
     }
 
     @Override
     public Optional<Customer> getCustomerById(String sessionId) {
         var customerEntity = customerRepository.getUserBySessionId(sessionId);
         return customerEntity
-                .map(customer -> customerMapper.toDomain(customer));
+                .map(customer -> customerPresenter.toDomain(customer));
     }
 }
 

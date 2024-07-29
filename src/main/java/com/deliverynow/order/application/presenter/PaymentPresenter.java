@@ -1,6 +1,6 @@
 package com.deliverynow.order.application.presenter;
 
-import com.deliverynow.order.adapters.api.response.PaymentResponse;
+import com.deliverynow.order.adapters.controller.response.PaymentResponse;
 import com.deliverynow.order.domain.entity.Payment;
 import com.deliverynow.order.infrastructure.repository.entity.PaymentEntity;
 import com.deliverynow.order.infrastructure.rest.response.MerchantPaymentResponse;

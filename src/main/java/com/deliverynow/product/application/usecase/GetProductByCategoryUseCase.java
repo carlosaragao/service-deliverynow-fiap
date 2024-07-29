@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface GetProductByCategoryUseCase {
 
-    List<ProductResponse> getProductByCategory(String category);
+    List<Product> getProductByCategory(String category);
 }

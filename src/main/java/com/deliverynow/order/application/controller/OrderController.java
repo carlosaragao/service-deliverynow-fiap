@@ -1,9 +1,9 @@
 package com.deliverynow.order.application.controller;
 
-import com.deliverynow.order.adapters.api.request.OrderRequest;
-import com.deliverynow.order.adapters.api.request.OrderUpdateStatusRequest;
-import com.deliverynow.order.adapters.api.response.CheckoutResponse;
-import com.deliverynow.order.adapters.api.response.OrderResponse;
+import com.deliverynow.order.adapters.controller.request.OrderRequest;
+import com.deliverynow.order.adapters.controller.request.OrderUpdateStatusRequest;
+import com.deliverynow.order.adapters.controller.response.CheckoutResponse;
+import com.deliverynow.order.adapters.controller.response.OrderResponse;
 
 import java.util.List;
 

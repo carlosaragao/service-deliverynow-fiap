@@ -1,6 +1,6 @@
 package com.deliverynow.product.infrastructure.config;
 
-import com.deliverynow.product.application.mapper.ProductMapper;
+import com.deliverynow.product.application.presenter.ProductPresenter;
 import com.deliverynow.product.application.usecase.impl.CreateProductUseCaseImpl;
 import com.deliverynow.product.application.usecase.impl.DeleteProductUseCaseImpl;
 import com.deliverynow.product.application.usecase.impl.GetProductByCategoryUseCaseImpl;
@@ -13,8 +13,8 @@ import jakarta.enterprise.inject.Default;
 public class ProductConfig {
 
     @Default
-    public CreateProductUseCaseImpl createProductUseCase(ProductGateway productGateway, ProductMapper productMapper) {
-        return new CreateProductUseCaseImpl(productGateway, productMapper);
+    public CreateProductUseCaseImpl createProductUseCase(ProductGateway productGateway, ProductPresenter productPresenter) {
+        return new CreateProductUseCaseImpl(productGateway, productPresenter);
     }
 
     @Default
@@ -23,13 +23,13 @@ public class ProductConfig {
     }
 
     @Default
-    public GetProductByCategoryUseCaseImpl getProductByCategoryUseCase(ProductGateway productGateway, ProductMapper productMapper) {
-        return new GetProductByCategoryUseCaseImpl(productGateway, productMapper);
+    public GetProductByCategoryUseCaseImpl getProductByCategoryUseCase(ProductGateway productGateway, ProductPresenter productPresenter) {
+        return new GetProductByCategoryUseCaseImpl(productGateway, productPresenter);
     }
 
     @Default
-    public UpdateProductUseCaseImpl updateProductUseCase(ProductGateway productGateway, ProductMapper productMapper) {
-        return new UpdateProductUseCaseImpl(productGateway, productMapper);
+    public UpdateProductUseCaseImpl updateProductUseCase(ProductGateway productGateway, ProductPresenter productPresenter) {
+        return new UpdateProductUseCaseImpl(productGateway, productPresenter);
     }
 
 }

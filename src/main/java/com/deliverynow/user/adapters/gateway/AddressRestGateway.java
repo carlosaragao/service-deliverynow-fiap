@@ -1,7 +1,7 @@
 package com.deliverynow.user.adapters.gateway;
 
 
-import com.deliverynow.user.application.mapper.AddressMapper;
+import com.deliverynow.user.application.presenter.AddressPresenter;
 import com.deliverynow.user.infrastructure.rest.GetAddressRest;
 import com.deliverynow.user.domain.entity.Address;
 import com.deliverynow.user.domain.gateway.AddressGateway;
@@ -16,11 +16,11 @@ public class AddressRestGateway implements AddressGateway {
     @RestClient
     GetAddressRest getAddressRest;
     @Inject
-    AddressMapper addressMapper;
+    AddressPresenter addressPresenter;
 
     @Override
     public Address getAddress(String postalCode) {
         var addressDto = getAddressRest.buscar(postalCode);
-        return addressMapper.toDomain(addressDto);
+        return addressPresenter.toDomain(addressDto);
     }
 }
