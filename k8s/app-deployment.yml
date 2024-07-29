@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deliverynow-replicaset
+  name: deliverynow-deployment
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: service-deliverynow
   template:
     metadata:
+      name: service-deliverynow
       labels:
         app: service-deliverynow
     spec:
       containers:
         - name: apireplicate
-          image: lodc1992/service-deliverynow:tagname
+          image: lodc1992/service-deliverynow:v1
           env:
             - name: QUARKUS_MONGODB_CONNECTION_STRING
               valueFrom:
@@ -23,6 +23,12 @@ spec:
                   name: db-config
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /service-deliverynow-fiap/q/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 30
           resources:
             limits:
               cpu: "0.5"

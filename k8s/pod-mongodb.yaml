@@ -21,6 +21,7 @@ spec:
           mountPath: /docker-entrypoint-initdb.d/
   volumes:
     - name: "mongo-data-dir"
+      emptyDir: {}
     - name: "init-database"
       configMap:
         name: create-db-configmap

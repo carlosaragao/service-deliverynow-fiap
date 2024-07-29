@@ -309,7 +309,7 @@ db.customer.insertMany(
                 "street": "Rua A",
                 "state": "SP",
                 "city": "São Paulo",
-                "number": "100"
+                "numberAddress": "100"
             }
         },
         {
@@ -324,7 +324,7 @@ db.customer.insertMany(
                 "street": "Rua B",
                 "state": "RJ",
                 "city": "Rio de Janeiro",
-                "number": "200"
+                "numberAddress": "200"
             }
         },
         {
@@ -339,7 +339,7 @@ db.customer.insertMany(
                 "street": "Rua C",
                 "state": "MG",
                 "city": "Belo Horizonte",
-                "number": "300"
+                "numberAddress": "300"
             }
         },
         {
@@ -354,7 +354,7 @@ db.customer.insertMany(
                 "street": "Rua D",
                 "state": "RS",
                 "city": "Porto Alegre",
-                "number": "400"
+                "numberAddress": "400"
             }
         },
         {
@@ -369,7 +369,7 @@ db.customer.insertMany(
                 "street": "Rua E",
                 "state": "PR",
                 "city": "Curitiba",
-                "number": "500"
+                "numberAddress": "500"
             }
         },
         {
@@ -384,7 +384,7 @@ db.customer.insertMany(
                 "street": "Rua F",
                 "state": "SC",
                 "city": "Florianópolis",
-                "number": "600"
+                "numberAddress": "600"
             }
         },
         {
@@ -399,7 +399,7 @@ db.customer.insertMany(
                 "street": "Rua G",
                 "state": "BA",
                 "city": "Salvador",
-                "number": "700"
+                "numberAddress": "700"
             }
         },
         {
@@ -414,7 +414,7 @@ db.customer.insertMany(
                 "street": "Rua H",
                 "state": "CE",
                 "city": "Fortaleza",
-                "number": "800"
+                "numberAddress": "800"
             }
         },
         {
@@ -429,7 +429,7 @@ db.customer.insertMany(
                 "street": "Rua I",
                 "state": "PE",
                 "city": "Recife",
-                "number": "900"
+                "numberAddress": "900"
             }
         },
         {
@@ -444,7 +444,7 @@ db.customer.insertMany(
                 "street": "Rua J",
                 "state": "AM",
                 "city": "Manaus",
-                "number": "1000"
+                "numberAddress": "1000"
             }
         }
     ]);

@@ -5,17 +5,20 @@
 ```
 ---
 ## | 👊🏽 • Team 95
-| |\Name|\Identity|
+| |Name|Identity|
 |-|-|-|
 | 🐰 | Leandro Coelho | RM355527 |
 ---
+## | 🖥️ • Desenho da Arquitetura
+
+![System design](img/diagrama-arquitetura.png)
+
 
 ## | 🖥️ • Event Storming
 - https://miro.com/miroverse/sistema-de-delivery/?social=copy-link
 
 ## | ✉️ • Deploying
 
-# service-food
 Este projeto usa Quarkus, e Java 21
 
 ## Executando a aplicação utilizando o docker
@@ -23,7 +26,8 @@ Este projeto usa Quarkus, e Java 21
 1. Construir a imagem da aplicação executando o comando abaixo
 
 ```shell script
-docker build -f src/main/docker/Dockerfile.jvm -t quarkus/service-food-jvm .
+docker build -f src/main/docker/Dockerfile.jvm -t quarkus/service-deliverynow-fiap .
+
 ```
 3. Executar o comando para subir a imagem do mongo e da aplicação
 
