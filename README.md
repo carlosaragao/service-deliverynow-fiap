@@ -22,17 +22,30 @@
 Este projeto usa Quarkus, e Java 21
 
 ## Executando a aplicação utilizando o docker
-
-1. Construir a imagem da aplicação executando o comando abaixo
+Construir a imagem da aplicação executando o comando abaixo
 
 ```shell script
 docker build -f src/main/docker/Dockerfile.jvm -t quarkus/service-deliverynow-fiap .
 
 ```
-3. Executar o comando para subir a imagem do mongo e da aplicação
+Executar o comando para subir a imagem do mongo e da aplicação
 
 ```shell script
 docker-compose up -d
 ```
-4. Link do Swagger
+## Executando a aplicação utilizando o Kubernetes
+
+Construir a pods apartir do kustomization.yml
+
+```shell script
+kubectl apply -k ./k8s 
+```
+
+Deletar pods apartir do kustomization.yml
+
+```shell script
+kubectl delete -k ./k8s 
+```
+
+5.Link do Swagger
 - http://localhost:8080/service-deliverynow-fiap/q/swagger-ui/
