@@ -22,6 +22,10 @@ public class CustomerRestController {
 
     CustomerController customerController;
 
+    public CustomerRestController(CustomerController customerController) {
+        this.customerController = customerController;
+    }
+
     @POST
     @Operation(summary = "Inserir um novo cliente")
     public RestResponse<Void> insertClient(@Valid CustomerRequest customerRequest) {

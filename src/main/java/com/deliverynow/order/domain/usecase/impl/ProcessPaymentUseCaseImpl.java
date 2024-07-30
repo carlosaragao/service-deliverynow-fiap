@@ -65,7 +65,7 @@ public class ProcessPaymentUseCaseImpl implements ProcessPaymentUseCase {
                 scheduler.shutdown();
             }
         } else {
-            logger.info("Id já processado {}", orderId);
+            logger.info("Order {} is already in processing", orderId);
         }
 
     }

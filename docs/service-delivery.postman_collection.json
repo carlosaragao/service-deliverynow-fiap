@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "233dccef-2fd7-48a3-ae22-479c8d982ecb",
+		"name": "service-delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cliente",
+			"item": [
+				{
+					"name": "Inserir cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mario Word\",\r\n    \"phone\": \"1234567890\",\r\n    \"email\": \"mario.word@example.com\",\r\n    \"document\": \"08197588474\",\r\n    \"documentType\": \"CPF\",\r\n    \"allowNotification\": true,\r\n    \"postalCode\": \"81265-228\",\r\n    \"numberAddress\": \"1457\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/customer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar sessão cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/customer/session?document=08197588474",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"customer",
+								"session"
+							],
+							"query": [
+								{
+									"key": "document",
+									"value": "08197588474"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar cliente por documento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/customer?document=08197588474",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "document",
+									"value": "08197588474"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produto",
+			"item": [
+				{
+					"name": "Inserir produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"X-Frango Duplo\",\r\n  \"description\": \"Um delicioso X-Franco com hamburguer de frango duplo\",\r\n  \"category\": \"LANCHE\",\r\n  \"price\": 29.99,\r\n  \"image\": \"http://example.com/cheeseburger.jpg\",\r\n  \"availability\": true,\r\n  \"ingredients\": [\r\n    \"Hambúrguer de frango\",\r\n    \"Queijo\",\r\n    \"Alface\"\r\n  ],\r\n  \"breadType\": \"Pão de hambúrguer\",\r\n  \"calories\": 700\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"X-Frango Duplo\",\r\n  \"description\": \"Um delicioso X-Franco com hamburguer de frango duplo\",\r\n  \"category\": \"LANCHE\",\r\n  \"price\": 27.29,\r\n  \"image\": \"http://example.com/cheeseburger.jpg\",\r\n  \"availability\": true,\r\n  \"ingredients\": [\r\n    \"Hambúrguer de frango\",\r\n    \"Queijo\",\r\n    \"Alface\",\r\n    \"Presunto\"\r\n  ],\r\n  \"breadType\": \"Pão de hambúrguer\",\r\n  \"calories\": 700\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/product/66a82a07158d5611bcca0ca6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"product",
+								"66a82a07158d5611bcca0ca6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar prooduto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/product/66a82a07158d5611bcca0ca6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"product",
+								"66a82a07158d5611bcca0ca6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/product?category=BEBIDA",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"product"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "BEBIDA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Selecionar Produtos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionId\": \"1881d1e4-ed90-485f-86d7-9833a5d2186a\",\r\n    \"products\": [\r\n        {\r\n            \"productId\": \"668da8ff2fcb48e768149f48\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"productId\": \"668da8ff2fcb48e768149f56\",\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/item/select",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"item",
+								"select"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/item/remove/66a82ad2158d5611bcca0cab",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"item",
+								"remove",
+								"66a82ad2158d5611bcca0cab"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedido",
+			"item": [
+				{
+					"name": "Resumo Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/order/resume/:sessionId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"order",
+								"resume",
+								":sessionId"
+							],
+							"variable": [
+								{
+									"key": "sessionId",
+									"value": "1881d1e4-ed90-485f-86d7-9833a5d2186a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionId\": \"1881d1e4-ed90-485f-86d7-9833a5d2186a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/order/checkout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"order",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar status pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": \"34266380\",\r\n    \"status\": \"EM_PREPARACAO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/order/update/status",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"order",
+								"update",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gerar QrCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/payment/qrcode/34266380",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"payment",
+								"qrcode",
+								"34266380"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar pagamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/payment/34266380",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"payment",
+								"34266380"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/service-deliverynow-fiap/order",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"service-deliverynow-fiap",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

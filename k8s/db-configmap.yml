@@ -454,3 +454,101 @@ data:
                 }
             }
         ]);
+    
+    db.payment.insertMany(
+        [{
+           
+            amountRefunded: '0',
+            currencyId: 'BRL',
+            dateApproved: '2024-07-29T19:56:46.000-04:00',
+            dateCreated: '2024-07-29T19:56:46.000-04:00',
+            lastModified: '2024-07-29T19:56:46.000-04:00',
+            operationType: 'regular_payment',
+            orderId: '35138389',
+            shippingCost: '0',
+            status: 'approved',
+            statusDetail: 'accredited',
+            totalPaidAmount: '60',
+            transactionAmount: '60'
+        }]);
+    
+    db.item.insertMany(
+        [{
+            _id: ObjectId('66a82ad2158d5611bcca0caa'),
+            category: 'Sobremesa',
+            customerId: 'e8590cca-417c-4acb-ae1f-0d49e753e1fb',
+            description: 'Torta de maçã clássica com uma crosta crocante.',
+            name: 'Torta de Maçã',
+            productId: '668da8ff2fcb48e768149f54',
+            quantity: 2,
+            totalPrice: 11.98,
+            unitPrice: 5.99
+        }]);
+    
+    db.order.insertMany(
+        [
+            {
+                _id: ObjectId('66a554c2ef745a2439ee711d'),
+                createDate: ISODate('2024-07-27T17:12:50.588Z'),
+                items: [
+                    {
+                        category: 'Lanche',
+                        description: 'Hambúrguer suculento com bacon, queijo cheddar e molho barbecue.',
+                        itemId: '66a55342ef745a2439ee7115',
+                        name: 'Bacon Burger',
+                        productId: '668da8ff2fcb48e768149f4b',
+                        quantity: 2,
+                        totalPrice: 35.98,
+                        unitPrice: 17.99
+                    },
+                    {
+                        category: 'Bebida',
+                        description: 'Refrigerante gelado de diversos sabores.',
+                        itemId: '66a55342ef745a2439ee7116',
+                        name: 'Refrigerante',
+                        productId: '668da8ff2fcb48e768149f56',
+                        quantity: 1,
+                        totalPrice: 2.99,
+                        unitPrice: 2.99
+                    },
+                    {
+                        category: 'Bebida',
+                        description: 'Suco de laranja natural e fresco.',
+                        itemId: '66a55342ef745a2439ee7117',
+                        name: 'Suco de Laranja',
+                        productId: '668da8ff2fcb48e768149f57',
+                        quantity: 1,
+                        totalPrice: 3.99,
+                        unitPrice: 3.99
+                    },
+                    {
+                        category: 'Sobremesa',
+                        description: 'Torta de maçã clássica com uma crosta crocante.',
+                        itemId: '66a55342ef745a2439ee7118',
+                        name: 'Torta de Maçã',
+                        productId: '668da8ff2fcb48e768149f54',
+                        quantity: 2,
+                        totalPrice: 11.98,
+                        unitPrice: 5.99
+                    },
+                    {
+                        category: 'Lanche',
+                        description: 'Hambúrguer de filé de peixe com molho tártaro e alface.',
+                        itemId: '66a55342ef745a2439ee7119',
+                        name: 'Fish Burger',
+                        productId: '668da8ff2fcb48e768149f4c',
+                        quantity: 2,
+                        totalPrice: 29.98,
+                        unitPrice: 14.99
+                    }
+                ],
+                orderId: '35735949',
+                statusOrder: 'RECEBIDO',
+                total: {
+                    discount: 0,
+                    finalTotal: 84.92,
+                    subtotal: 84.92,
+                    taxes: 0
+                }
+            }
+        ]);  

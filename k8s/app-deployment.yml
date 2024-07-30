@@ -16,6 +16,11 @@ spec:
         - name: apireplicate
           image: lodc1992/service-deliverynow:v1
           env:
+            - name: URL_WEBHOOK
+              valueFrom:
+                configMapKeyRef:
+                  key: URL_WEBHOOK
+                  name: db-config
             - name: QUARKUS_MONGODB_CONNECTION_STRING
               valueFrom:
                 configMapKeyRef:
@@ -31,8 +36,8 @@ spec:
             periodSeconds: 30
           resources:
             limits:
-              cpu: "0.5"
-              memory: "512Mi"
+              cpu: "1.0"
+              memory: "1Gi"
             requests:
-              cpu: "0.2"
-              memory: "256Mi"
+              cpu: "1.0"
+              memory: "512Mi"

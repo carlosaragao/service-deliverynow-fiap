@@ -5,4 +5,5 @@ metadata:
   labels:
    name: db-config
 data:
+  URL_WEBHOOK: "https://1361-186-227-105-214.ngrok-free.app/service-deliverynow-fiap/payment/webhook"
   QUARKUS_MONGODB_CONNECTION_STRING: "mongodb://mongodb-service/db-food"
