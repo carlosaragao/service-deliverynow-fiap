@@ -33,6 +33,7 @@ public class QrCodePaymentRestGateway implements QrCodePaymentGateway {
     public QrCodeResponse processPayment(Order oder) {
         var paymentResquest = buildPaymentRequest(oder);
         var auth = String.format("Bearer %s", orderProperties.authorization());
+        log.info("Iniciando o processamento do pagamento {}", paymentResquest.getNotificationUrl());
         return paymentRest.generatedQrCode(auth, orderProperties.user(), orderProperties.external(), paymentResquest);
     }
 

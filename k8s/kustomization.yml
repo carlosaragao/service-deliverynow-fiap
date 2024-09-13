@@ -9,4 +9,4 @@ resources:
   - app-configmap.yml
   - app-hpa.yml
   - app-deployment.yml
-  - svc-application.yml
+#  - svc-application.yml
