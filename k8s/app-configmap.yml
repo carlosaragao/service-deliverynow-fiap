@@ -5,5 +5,5 @@ metadata:
   labels:
    name: db-config
 data:
-  URL_WEBHOOK: "https://a9fc6b78f7a65402e9ed8463f4e8da5f-776925045.us-east-1.elb.amazonaws.com/service-deliverynow-fiap/payment/webhook"
+  URL_WEBHOOK: "a9fc6b78f7a65402e9ed8463f4e8da5f-776925045.us-east-1.elb.amazonaws.com/service-deliverynow-fiap/payment/webhook"
   QUARKUS_MONGODB_CONNECTION_STRING: "mongodb://mongodb-service/db-food"
