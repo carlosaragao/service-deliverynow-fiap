@@ -75,5 +75,4 @@
 
         - name: Deploy to EKS
           run: |
-            kubectl delete -k ./k8s
             kubectl apply -k ./k8s
