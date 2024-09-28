@@ -4,8 +4,8 @@ metadata:
   name: deliverynow-kustomization
 resources:
   - db-configmap.yml
-  - pod-mongodb.yaml
-  - svc-mongodb.yml
+#  - pod-mongodb.yaml
+#  - svc-mongodb.yml
   - app-configmap.yml
   - app-hpa.yml
   - app-deployment.yml
