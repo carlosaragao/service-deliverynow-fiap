@@ -14,18 +14,18 @@ spec:
     spec:
       containers:
         - name: apireplicate
-          image: 388512399861.dkr.ecr.us-east-1.amazonaws.com/deliverynow-ecr:latest
-          env:
-            - name: URL_WEBHOOK
-              valueFrom:
-                configMapKeyRef:
-                  key: URL_WEBHOOK
-                  name: db-config
-            - name: QUARKUS_MONGODB_CONNECTION_STRING
-              valueFrom:
-                configMapKeyRef:
-                  key: QUARKUS_MONGODB_CONNECTION_STRING
-                  name: db-config
+          image: 755211177052.dkr.ecr.us-east-1.amazonaws.com/deliverynow-ecr:latest
+#          env:
+#            - name: URL_WEBHOOK
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: URL_WEBHOOK
+#                  name: db-config
+#            - name: QUARKUS_MONGODB_CONNECTION_STRING
+#              valueFrom:
+#                configMapKeyRef:
+#                  key: QUARKUS_MONGODB_CONNECTION_STRING
+#                  name: db-config
           ports:
             - containerPort: 8080
           livenessProbe:
