@@ -5,5 +5,5 @@ metadata:
   labels:
    name: db-config
 data:
-  URL_WEBHOOK: "https://c6jiyh0gwi.execute-api.us-east-1.amazonaws.com/service-deliverynow-fiap/payment/webhook"
-  QUARKUS_MONGODB_CONNECTION_STRING: "mongodb+srv://admin:AdminPassword123@deliverynow-cluster.dovxg.mongodb.net/?retryWrites=true&w=majority&appName=deliverynow-cluster"
+  URL_WEBHOOK: "http://a9fc6b78f7a65402e9ed8463f4e8da5f-776925045.us-east-1.elb.amazonaws.com/service-deliverynow-fiap/payment/webhook"
+  QUARKUS_MONGODB_CONNECTION_STRING: "mongodb://admin:AdminPassword123@deliverynow-cluster-shard-00-00.dovxg.mongodb.net:27017,deliverynow-cluster-shard-00-01.dovxg.mongodb.net:27017,deliverynow-cluster-shard-00-02.dovxg.mongodb.net:27017/?ssl=true&replicaSet=atlas-qihdnz-shard-0&authSource=admin&retryWrites=true&w=majority&appName=deliverynow-cluster"
