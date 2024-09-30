@@ -14,6 +14,16 @@
             java-version: '21'
             distribution: 'temurin'
             cache: maven
+        - name: Set environment variables for Quarkus
+          env:
+            MONGODB_CONNECT_STRING: ${{ secrets.MONGODB_CONNECT_STRING }}
+            URL_MERCADO_PAGO: ${{ secrets.URL_MERCADO_PAGO }}
+            URL_WEBHOOK: ${{ secrets.URL_WEBHOOK }}
+            TOKEN_MERCADO_PAGO: ${{ secrets.TOKEN_MERCADO_PAGO }}
+            USER_MERCADO_PAGO: ${{ secrets.USER_MERCADO_PAGO }}
+            EXTERNAL_MERCADO_PAGO: ${{ secrets.EXTERNAL_MERCADO_PAGO }}
+          run: |
+            echo "Environment variables set"
         - name: Build with Maven
           run: mvn -B package --file pom.xml
 
