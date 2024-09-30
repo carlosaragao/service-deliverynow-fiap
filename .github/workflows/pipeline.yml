@@ -14,16 +14,6 @@
             java-version: '21'
             distribution: 'temurin'
             cache: maven
-        - name: Set environment variables for Quarkus
-          env:
-            MONGODB_CONNECT_STRING: ${{ secrets.MONGODB_CONNECT_STRING }}
-            URL_MERCADO_PAGO: ${{ secrets.URL_MERCADO_PAGO }}
-            URL_WEBHOOK: ${{ secrets.URL_WEBHOOK }}
-            TOKEN_MERCADO_PAGO: ${{ secrets.TOKEN_MERCADO_PAGO }}
-            USER_MERCADO_PAGO: ${{ secrets.USER_MERCADO_PAGO }}
-            EXTERNAL_MERCADO_PAGO: ${{ secrets.EXTERNAL_MERCADO_PAGO }}
-          run: |
-            echo "Environment variables set"
 
         - name: Set environment variable
           run: echo MP_PAYMENT_AUTHORIZATION=$TOKEN_MERCADO_PAGO
@@ -61,11 +51,23 @@
         - name: Build, tag, and push the image to Amazon ECR
           id: build-image
           env:
+            MONGODB_CONNECT_STRING: ${{ secrets.MONGODB_CONNECT_STRING }}
+            URL_MERCADO_PAGO: ${{ secrets.URL_MERCADO_PAGO }}
+            URL_WEBHOOK: ${{ secrets.URL_WEBHOOK }}
+            TOKEN_MERCADO_PAGO: ${{ secrets.TOKEN_MERCADO_PAGO }}
+            USER_MERCADO_PAGO: ${{ secrets.USER_MERCADO_PAGO }}
+            EXTERNAL_MERCADO_PAGO: ${{ secrets.EXTERNAL_MERCADO_PAGO }}
             ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
             ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
             IMAGE_TAG: latest
           run: |
-            docker build -f src/main/docker/Dockerfile.jvm -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+            docker build --build-arg URL_WEBHOOK=$URL_WEBHOOK \
+                         --build-arg QUARKUS_MONGODB_CONNECTION_STRING=$MONGODB_CONNECT_STRING \
+                         --build-arg TOKEN_MERCADO_PAGO=$TOKEN_MERCADO_PAGO \
+                         --build-arg EXTERNAL_MERCADO_PAGO=$EXTERNAL_MERCADO_PAGO \
+                         --build-arg USER_MERCADO_PAGO=$USER_MERCADO_PAGO \
+                         --build-arg URL_MERCADO_PAGO=$URL_MERCADO_PAGO \
+                         -f src/main/docker/Dockerfile.jvm -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
             docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     deploy-eks:
