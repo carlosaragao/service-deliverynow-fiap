@@ -83,6 +83,11 @@
         - name: Config EKS
           run: aws eks update-kubeconfig --name deliverynow-eks --region us-east-1
 
+        - name: Clean pods to EKS
+          run: |
+            kubectl delete -k ./k8s
+          continue-on-error: true
+
         - name: Deploy to EKS
           run: |
             kubectl apply -k ./k8s
