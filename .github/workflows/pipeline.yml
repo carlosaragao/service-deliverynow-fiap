@@ -24,6 +24,10 @@
             EXTERNAL_MERCADO_PAGO: ${{ secrets.EXTERNAL_MERCADO_PAGO }}
           run: |
             echo "Environment variables set"
+
+        - name: Set environment variable
+          run: echo MP_PAYMENT_AUTHORIZATION=$TOKEN_MERCADO_PAGO
+
         - name: Build with Maven
           run: mvn -B package --file pom.xml
 
