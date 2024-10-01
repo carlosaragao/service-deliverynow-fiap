@@ -4,7 +4,7 @@ metadata:
   name: create-db-configmap
 data:
   create_db.js: |
-    const database = 'db-food';
+    const database = 'deliverynow-db';
     const crientCollection = 'customer';
     const productCollection = 'product';
     const orderCollection = 'order';
