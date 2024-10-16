@@ -49,3 +49,5 @@ kubectl delete -k ./k8s
 
 5.Link do Swagger
 - http://localhost:8080/service-deliverynow-fiap/q/swagger-ui/
+
+- Testando branch protegida
